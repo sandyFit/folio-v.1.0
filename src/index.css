@@ -1,13 +1,437 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Changa:wght@200..800&family=Familjen+Grotesk:ital,wght@0,400..700;1,400..700&family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Noto+Sans+Display:ital,wght@0,100..900;1,100..900&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Radio+Canada:ital,wght@0,300..700;1,300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@400..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arya:wght@400;700&family=Charis+SIL:ital,wght@0,400;0,700;1,400;1,700&family=Chivo+Mono:ital,wght@0,100..900;1,100..900&family=Familjen+Grotesk:ital,wght@0,400..700;1,400..700&family=Gugi&family=Magra:wght@400;700&family=Manuale:ital,wght@0,300..800;1,300..800&family=Metamorphous&family=Nova+Round&family=Prosto+One&family=Redressed&family=Stick+No+Bills:wght@200..800&family=Train+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pragati+Narrow:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Sora:wght@100..800&family=Space+Grotesk:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Sora:wght@100..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Inspiration&family=Marck+Script&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Tangerine:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== CUSTOM LINK HEIGHT ====== */
+.custom-link::after {
+    height: var(--after-height); /* This dynamically adjusts based on the `height` prop */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.visible {
+  z-index: 1000;
 }
+
+/* =========== SWAP LINK =========== */
+/* Temporarily add this for debugging */
+/* a, span {
+    border: 1px solid red; 
+} */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  color: #7c5dec;
+  height: 50px;  /* Ensure each container is visibly separated */
+  margin-bottom: 10px;  /* Space between items */
+  border: 1px solid red;  /* For visibility */
+}
+
+.textContainer {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  border: 1px solid blue;  /* For visibility */
+}
+
+.text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;  /* Center vertically */
+  justify-content: center;  /* Center horizontally */
+  transition: transform 0.3s, opacity 0.3s;  /* Simplified transition */
+}
+
+.firstText {
+  opacity: 1;
+}
+
+.secondText {
+  opacity: 0;
+  transform: translateY(100%);  /* Start below the view */
+}
+
+.container:hover .firstText {
+  opacity: 0;
+  transform: translateY(-100%);  /* Move out of view */
+}
+
+.container:hover .secondText {
+  opacity: 1;
+  transform: translateY(0);  /* Move into view */
+}
+
+
+/* =========== ABOUT STICKY EFFECT ============ */
+.parent-container { /* Assuming this is your flex container */
+  position: relative;
+  overflow: visible;
+  align-items: flex-start;
+  min-height: 220vh; /* Temporarily make sure it’s tall enough */
+  /* border: 2px solid blue;  */
+}
+
+.sticky-side {
+  position: sticky !important;
+  position: -webkit-sticky;
+  display: block; 
+  top: 100px; /* This is crucial for sticky positioning */
+  width: 70%;
+  color: #fafafa;
+  height: auto;
+  align-self: flex-start; 
+  /* border: 2px solid red; */
+}
+
+.animated-side {
+  width: 70%;
+  transform: translateY(90%);
+  opacity: 0;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+
+
+
+
+/* ============== DOWNLOADED FONTS ==============*/
+@font-face {
+    font-family: 'safiro';
+    src: url('./assets/fonts/safiro-medium-webfont.ttf') format('truetype');
+    
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'doumbar';
+    src:  url('./assets/fonts/doumbar-medium-webfont.ttf') format('truetype');
+          font-weight: normal;
+          font-style: normal;
+}
+
+
+.title-font {
+  font-family: 'doumbar';
+  
+}
+
+.fontTitle {
+  font-family: 'safiro';
+}
+
+
+
+/* ============= SCROLL BAR CUSTOMIZATION ============== */
+/* This will style the scrollbar track */
+::-webkit-scrollbar-track {
+  background-color: #000;
+}
+
+/* This will style the actual scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background-color: #7c5dec;
+  border-radius: 5px;
+  height: 20px;
+}
+
+/* This will change the scrollbar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #9d9efc;
+}
+
+/* This styles the overall scrollbar (width, height) */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+
+
+
+/* =========== STICKY SECTIONS ============ */
+
+.section-container {
+    width: 100%;
+    min-height: 100vh; /* Added a minimum height */
+    position: relative;
+    overflow: visible; /* This is crucial and should not be 'auto' or 'hidden' */
+    padding-bottom: 110vh; 
+    margin-bottom: 5rem;
+    z-index: 10;
+}
+
+.sticky-section {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    position: sticky;
+    top: 160px; /* Adjust this based on the header/nav size */
+    z-index: 20;
+    margin: 6rem 0 10rem 0;
+
+}
+
+
+/*=========== MOTION TEXT ===========*/
+
+@keyframes slideLeft {
+    from {
+        transform: translateX(0%);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes slideRight {
+    from {
+        transform: translateX(-50%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes rotateIcon {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+}
+
+.rotating-icon {
+  animation: rotateIcon 3s linear infinite;
+}
+
+
+.motion-text {
+    display: inline-block;
+    white-space: nowrap;
+    margin: 0;
+    padding: 0;
+    animation: slideLeft 30s linear infinite;
+}
+
+.motion-text2 {
+    display: inline-block;
+    white-space: nowrap;
+    margin: 0;
+    padding: 0;
+    animation: slideRight 30s linear infinite;
+}
+
+/* =============== ROTATING TEXT ================ */
+.rotating-text-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background-color: #d4d4d8;
+}
+
+.rotating-text-container svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg) translate(-50%, -50%);
+  }
+  to {
+    transform: rotate(360deg) translate(-50%, -50%);
+  }
+}
+
+.center-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px; /* Adjust size as needed */
+  height: 100px; /* Adjust size as needed */
+}
+
+
+/* ========== SLIDING TEXT FROM LEFT & RIGHT ==========*/
+@keyframes slideInTextFromLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInTextFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.textSlidingLeft {
+  animation: slideInTextFromLeft 1s ease-out forwards;
+}
+
+.textSlidingRight {
+  animation: slideInTextFromRight 1s ease-out forwards;
+}
+
+/* === CSS FOR 'COPIED' TEXT VISIBILITY IN CONTACT SECTION === */
+.copiedTextVisible {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 5s ease-in-out;
+}
+
+.copiedTextHidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .5s ease-in-out; /* Delay hiding until after fade */
+}
+
+/* ======== CURSOR ANIMATION ======= */
+
+
+
+.cursor {
+  background-color:  #111;
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+
+/* ========== TEXT OUTLINE ========== */
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: #2e1065;
+}
+
+/* ============ HORIZONTAL SCROLL ============ */
+
+.section.horizontal {
+    width: 100vw;
+    overflow-x: hidden; /* This prevents horizontal scrollbars */
+    position: relative;
+}
+
+.horizontal-scroll {
+    display: flex;
+    width: 300vw; /* Example width; Adjust based on content */
+    position: relative;
+    white-space: nowrap;
+}
+
+
+
+
+@layer base {
+    body {
+        @apply w-full m-0 p-0 box-border rounded-2xl bg-zinc-900 fontTitle 
+      }
+
+    a {
+      @apply cursor-pointer;
+    }
+}
+
+@layer utilities {
+
+  /* ============== NAVBAR LINKS ANIMATION =============== */
+  .nav-link {
+        @apply fontTitle uppercase tracking-wide
+    }
+
+    .active-link {
+      @apply text-pink-50;
+    }
+    .active-link::before {
+        @apply content-[''] bg-zinc-950 h-[2px] w-[0%] left-0 top-[50%] -rotate-[6deg] rounded-xl absolute duration-500
+    }
+
+    .active-link::before {
+        @apply w-[100%] 
+    }
+
+    /* ============================= */
+    .about-title {                             
+      @apply w-full font-ibm uppercase text-[4rem]  font-[400] mb-12
+    }
+
+    .about-text-mayus {                             
+      @apply text-[6rem] fontTitle font-[500] leading-[90px] uppercase
+    }
+
+    .services-list {
+      @apply flex font-ibm text-zinc-400 text-6xl capitalize font-[500] tracking-tighter
+    }
+    
+    .custom-link {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* ========TEXT IN ARRAY======= */
+    .array-text {
+      @apply  fontTitle font-[500] uppercase tracking-wide 
+    }
+
+    .array-text-light {
+      @apply  font-ibm text-base text-[#fff] font-[400] uppercase tracking-wide 
+    
+    }
+
+    .text-small {
+      @apply text-zinc-400 text-sm font-inter font-[300] uppercase tracking-wide
+    }
+
+    .text-small-min {
+      @apply text-zinc-300 text-[1.1rem] font-inter font-[300] tracking-wide
+    }
+
+    .text-small-bright {
+      @apply text-zinc-50 text-base font-inter font-[300] uppercase tracking-widest
+    }
+    .title-small {
+      @apply text-zinc-50 text-xl font-inter font-[300] uppercase tracking-wider
+    }
+
+}
+
+
+
+
